@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>門把的個人檔案</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600&family=Noto+Sans+TC:wght@300;400;500&display=swap');
+
+        :root {
+            --green: #536b50;
+            --dark-green: #354b39;
+            --light-green: #dce3d7;
+            --brown: #92785e;
+            --cream: #f7f4ec;
+            --white: #fffdf8;
+            --text: #514d42;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 30px;
+        }
+
+        body {
+            background: var(--cream);
+            color: var(--text);
+            font-family: 'Noto Sans TC', sans-serif;
+            line-height: 1.8;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        /* 導覽列 */
+
+        nav {
+            width: 100%;
+            padding: 22px 9%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #dedbce;
+        }
+
+        .logo {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 23px;
+            color: var(--dark-green);
+            letter-spacing: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 13px;
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--green);
+        }
+
+        /* 首頁 */
+
+        .hero {
+            min-height: 650px;
+            padding: 80px 12%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .english {
+            color: var(--brown);
+            letter-spacing: 4px;
+            font-size: 12px;
+        }
+
+        .hero h1 {
+            font-family: 'Noto Serif TC', serif;
+            color: var(--dark-green);
+            font-size: 65px;
+            font-weight: 500;
+            letter-spacing: 8px;
+            margin: 15px 0;
+        }
+
+        .hero h2 {
+            font-size: 17px;
+            color: var(--brown);
+            font-weight: 400;
+        }
+
+        .hero p {
+            font-size: 14px;
+            color: #777366;
+            margin-top: 25px;
+            max-width: 390px;
+            line-height: 2.3;
+        }
+
+        .hero button {
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: var(--green);
+            color: white;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 2px;
+            transition: .3s;
+        }
+
+        .hero button:hover {
+            background: var(--dark-green);
+            transform: translateY(-3px);
+        }
+
+        /* 頭像 */
+
+        .avatar-area {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .avatar-frame {
+            width: 360px;
+            background: #e5e9e0;
+            padding: 15px;
+            border: 1px solid #cbd2c5;
+            box-shadow: 12px 12px 0 #d5dbcf;
+            transform: rotate(2deg);
+        }
+
+        .avatar-frame img {
+            width: 100%;
+            display: block;
+        }
+
+        .avatar-caption {
+            text-align: center;
+            font-family: 'Noto Serif TC', serif;
+            font-size: 12px;
+            color: var(--brown);
+            padding-top: 10px;
+        }
+
+        .decoration {
+            position: absolute;
+            color: var(--green);
+            font-size: 45px;
+            top: -35px;
+            right: 0;
+        }
+
+        /* 通用區塊 */
+
+        section.content {
+            padding: 90px 12%;
+            border-top: 1px solid #dedbce;
+        }
+
+        .section-title {
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            color: var(--dark-green);
+            font-family: 'Noto Serif TC', serif;
+            font-size: 30px;
+            font-weight: 500;
+        }
+
+        .section-title span {
+            color: var(--brown);
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+        /* 關於我 */
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+        }
+
+        .about-quote {
+            color: var(--brown);
+            font-family: 'Noto Serif TC', serif;
+            font-size: 23px;
+            line-height: 2;
+        }
+
+        .about-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .info {
+            border-bottom: 1px solid #dedbce;
+            padding-bottom: 12px;
+        }
+
+        .info small {
+            display: block;
+            color: #998d7b;
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        .info p {
+            font-size: 14px;
+            color: var(--text);
+            margin-top: 5px;
+        }
+
+        /* 興趣 */
+
+        .hobby-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .hobby-card {
+            background: var(--white);
+            border: 1px solid #e6e0d4;
+            padding: 35px 25px;
+            transition: .3s;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px #354b3910;
+        }
+
+        .hobby-icon {
+            font-size: 30px;
+            color: var(--green);
+        }
+
+        .hobby-card h3 {
+            font-family: 'Noto Serif TC', serif;
+            color: var(--dark-green);
+            font-size: 17px;
+            margin: 15px 0 8px;
+        }
+
+        .hobby-card p {
+            color: #898477;
+            font-size: 12px;
+        }
+
+        /* 喜歡的事物 */
+
+        .favorite {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .favorite-item h3 {
+            color: var(--green);
+            font-family: 'Noto Serif TC', serif;
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        .favorite-item p {
+            font-size: 12px;
+            color: var(--brown);
+            margin-top: 5px;
+        }
+
+        /* =================================
+   作品集 PORTFOLIO
+================================= */
+
+        .portfolio-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 35px;
+        }
+
+        .portfolio-card {
+            background: var(--white);
+            border: 1px solid #e6e0d4;
+            padding: 13px;
+            transition: .3s;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px #354b3915;
+        }
+
+        .portfolio-image {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background: #e5e9e0;
+            overflow: hidden;
+        }
+
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: .5s;
+        }
+
+        .portfolio-card:hover .portfolio-image img {
+            transform: scale(1.04);
+        }
+
+        .portfolio-info {
+            padding: 18px 12px 12px;
+        }
+
+        .portfolio-info small {
+            color: var(--brown);
+            font-family: Georgia, serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        .portfolio-info h3 {
+            font-family: 'Noto Serif TC', serif;
+            color: var(--dark-green);
+            font-size: 18px;
+            font-weight: 500;
+            margin: 5px 0;
+        }
+
+        .portfolio-info p {
+            font-size: 12px;
+            color: #898477;
+        }
+
+        /* 聯絡方式 */
+
+        .contact-section {
+            background: #e8ebe2;
+            padding: 75px 12%;
+            text-align: center;
+        }
+
+        .contact-title {
+            color: var(--dark-green);
+            font-family: 'Noto Serif TC', serif;
+            font-size: 30px;
+            font-weight: 500;
+        }
+
+        .contact-subtitle {
+            color: var(--brown);
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: 13px;
+            letter-spacing: 2px;
+            margin-bottom: 35px;
+        }
+
+        .contact-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            min-width: 230px;
+            padding: 22px 30px;
+            background: var(--white);
+            border: 1px solid #d9dfd3;
+            transition: .3s;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .contact-icon {
+            color: var(--green);
+            font-size: 25px;
+        }
+
+        .contact-item h3 {
+            font-size: 13px;
+            color: var(--brown);
+            margin: 5px 0;
+            font-weight: 400;
+        }
+
+        .contact-item a {
+            color: var(--dark-green);
+            font-size: 14px;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--brown);
+        }
+
+        /* 頁尾 */
+
+        footer {
+            text-align: center;
+            padding: 40px 20px 30px;
+            border-top: 1px solid #dedbce;
+        }
+
+        footer .flower {
+            font-size: 30px;
+            color: var(--green);
+        }
+
+        footer p {
+            color: var(--brown);
+            font-family: Georgia, serif;
+            font-style: italic;
+            margin-top: 12px;
+            font-size: 14px;
+        }
+
+        footer small {
+            display: block;
+            color: #a49b8b;
+            margin-top: 25px;
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        /* 手機版 */
+
+        @media (max-width: 768px) {
+
+            nav {
+                padding: 18px 6%;
+            }
+
+            .nav-links {
+                gap: 13px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+
+            .hero {
+                flex-direction: column;
+                padding: 65px 8%;
+                gap: 55px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .avatar-frame {
+                width: 85%;
+            }
+
+            section.content {
+                padding: 65px 8%;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .hobby-container {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-container {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .favorite {
+                gap: 35px;
+                flex-wrap: wrap;
+            }
+
+            .contact-section {
+                padding: 60px 8%;
+            }
+
+            .contact-container {
+                gap: 18px;
+            }
+
+            .contact-item {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 400px) {
+
+            .about-list {
+                grid-template-columns: 1fr;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- 導覽列 -->
+
+    <nav>
+
+        <div class="logo">關於門把</div>
+
+        <div class="nav-links">
+            <a href="#home">首頁</a>
+            <a href="#about">關於我</a>
+            <a href="#hobby">興趣</a>
+            <a href="#portfolio">作品集</a>
+            <a href="#contact">聯絡我</a>
+        </div>
+
+    </nav>
+
+
+    <!-- 首頁 -->
+
+    <header class="hero" id="home">
+
+        <div class="hero-text">
+
+            <div class="english">
+                WELCOME TO MY LITTLE WORLD
+            </div>
+
+            <h1>嗨，我是門把。</h1>
+
+            <h2>A little corner of my life.</h2>
+
+            <p>
+                歡迎來到我的個人檔案。<br>
+                你可以在這裡認識我，<br>
+                喜歡的東西以及日常生活中的興趣。
+            </p>
+
+            <button onclick="document.getElementById('about').scrollIntoView()">
+                認識我 →
+            </button>
+
+        </div>
+
+
+        <div class="avatar-area">
+
+            <div class="decoration">❧</div>
+
+            <div class="avatar-frame">
+
+                <img src="avatar.png" alt="門把的頭像">
+
+                <div class="avatar-caption">
+                    MY LITTLE PORTRAIT
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- 關於我 -->
+
+    <section class="content" id="about">
+
+        <div class="section-title">
+            <h2>關於我</h2>
+            <span>About Me</span>
+        </div>
+
+        <div class="about-container">
+
+            <div class="about-quote">
+                好想睡，<br>
+                想打第五人格。
+            </div>
+
+            <div class="about-list">
+
+                <div class="info">
+                    <small>NICKNAME</small>
+                    <p>門把</p>
+                </div>
+
+                <div class="info">
+                    <small>BIRTHDAY</small>
+                    <p>6 月 25 日</p>
+                </div>
+
+                <div class="info">
+                    <small>AGE</small>
+                    <p>20 歲</p>
+                </div>
+
+                <div class="info">
+                    <small>UNIVERSITY</small>
+                    <p>台南應用科技大學</p>
+                </div>
+
+                <div class="info">
+                    <small>DEPARTMENT</small>
+                    <p>多媒體動畫系</p>
+                </div>
+
+                <div class="info">
+                    <small>SKILL</small>
+                    <p>繪畫</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- 興趣愛好 -->
+
+    <section class="content" id="hobby">
+
+        <div class="section-title">
+            <h2>我的興趣</h2>
+            <span>Things I Like</span>
+        </div>
+
+        <div class="hobby-container">
+
+            <div class="hobby-card">
+
+                <div class="hobby-icon">♧</div>
+
+                <h3>第五人格</h3>
+
+                <p>
+                    喜歡遊玩的遊戲。
+                </p>
+
+            </div>
+
+
+            <div class="hobby-card">
+
+                <div class="hobby-icon">✿</div>
+
+                <h3>繪畫</h3>
+
+                <p>
+                    喜歡用畫筆記錄腦海中的想法。
+                </p>
+
+            </div>
+
+
+            <div class="hobby-card">
+
+                <div class="hobby-icon">♫</div>
+
+                <h3>音樂</h3>
+
+                <p>
+                    最喜歡的日本音樂團體AAA。
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- 喜歡的事物 -->
+
+    <section class="content">
+
+        <div class="section-title">
+            <h2>我的偏愛</h2>
+            <span>My Favorites</span>
+        </div>
+
+        <div class="favorite">
+
+            <div class="favorite-item">
+                <h3>Green</h3>
+                <p>喜歡的顏色・綠色</p>
+            </div>
+
+            <div class="favorite-item">
+                <h3>Plumeria</h3>
+                <p>喜歡的花・雞蛋花</p>
+            </div>
+
+            <div class="favorite-item">
+                <h3>AAA</h3>
+                <p>喜歡的團體</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================
+     作品集 PORTFOLIO
+================================= -->
+
+    <section class="content" id="portfolio">
+
+        <div class="section-title">
+
+            <h2>我的作品集</h2>
+
+            <span>My Portfolio</span>
+
+        </div>
+
+
+        <div class="portfolio-container">
+
+
+            <!-- 作品一 -->
+
+            <div class="portfolio-card">
+
+                <div class="portfolio-image">
+
+                    <img src="work1.png" alt="作品一">
+
+                </div>
+
+                <div class="portfolio-info">
+
+                    <small>WORK / 01</small>
+
+                </div>
+
+            </div>
+
+
+            <!-- 作品二 -->
+
+            <div class="portfolio-card">
+
+                <div class="portfolio-image">
+
+                    <img src="work2.png" alt="作品二">
+
+                </div>
+
+                <div class="portfolio-info">
+
+                    <small>WORK / 02</small>
+
+                </div>
+
+            </div>
+
+
+            <!-- 作品三 -->
+
+            <div class="portfolio-card">
+
+                <div class="portfolio-image">
+
+                    <img src="work3.png" alt="作品三">
+
+                </div>
+
+                <div class="portfolio-info">
+
+                    <small>WORK / 03</small>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- 作品四 -->
+
+            <div class="portfolio-card">
+
+                <div class="portfolio-image">
+
+                    <img src="work4.png" alt="作品四">
+
+                </div>
+
+                <div class="portfolio-info">
+
+                    <small>WORK / 04</small>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================
+     聯絡方式 CONTACT
+================================= -->
+
+    <section class="contact-section" id="contact">
+
+        <h2 class="contact-title">
+            聯絡我
+        </h2>
+
+        <div class="contact-subtitle">
+            Get In Touch
+        </div>
+
+
+        <div class="contact-container">
+
+
+            <!-- 電話 -->
+
+            <div class="contact-item">
+
+                <div class="contact-icon">☎</div>
+
+                <h3>PHONE</h3>
+
+                <a href="tel:0928129872">
+                    0928-129-872
+                </a>
+
+            </div>
+
+
+            <!-- Email -->
+
+            <div class="contact-item">
+
+                <div class="contact-icon">✉</div>
+
+                <h3>EMAIL</h3>
+
+                <a href="mailto:wij0625@gmail.com">
+                    wij0625@gmail.com
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- 頁尾 -->
+
+    <footer>
+
+        <div class="flower">✿</div>
+
+        <p>
+            Thank you for visiting my little world.
+        </p>
+
+        <small>
+            © 2026 MENBA · GROW AT YOUR OWN PACE
+        </small>
+
+    </footer>
+
+
+</body>
+
+</html>
